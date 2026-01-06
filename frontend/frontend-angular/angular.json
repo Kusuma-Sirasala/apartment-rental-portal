@@ -2,11 +2,12 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "d2dfad6e-7a16-4f98-a5bf-17c2abdde9f1"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "apartment-portal": {
+    "frontend-angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "apartment-portal:build:production"
+              "buildTarget": "frontend-angular:build:production"
             },
             "development": {
-              "buildTarget": "apartment-portal:build:development"
+              "buildTarget": "frontend-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
