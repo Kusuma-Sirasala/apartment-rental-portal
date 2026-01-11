@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Apartments</title>
+  <title>Apartment Rental Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="p-6 bg-gray-100">
-<h1 class="text-2xl font-bold mb-4">Available Apartments</h1>
 
-<div id="apartments" class="grid grid-cols-3 gap-4"></div>
-<a href="apartments.html">"View Apartments</a>
-<script>
-fetch("http://127.0.0.1:5000/api/apartments")
-  .then(res => res.json())
-  .then(data => {
-    const box = document.getElementById("apartments");
-    data.forEach(a => {
-      box.innerHTML += `
-        <div class="bg-white p-4 rounded shadow">
-          <img src="${a.image}" class="h-40 w-full object-cover"/>
-          <h3 class="font-bold mt-2">${a.name}</h3>
-          <p>${a.bhk} - ₹${a.rent}</p>
-        </div>`;
-    });
-  });
-</script>
+<body class="font-sans">
+
+<!-- HEADER -->
+<header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+  <h1 class="text-xl font-bold">🏢 Apartment Rental Portal</h1>
+  <nav>
+    <a href="apartments.html" class="mr-4">Apartments</a>
+    <a href="login.html" class="mr-4">Login</a>
+    <a href="register.html">Register</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION WITH IMAGE -->
+<section class="relative h-screen">
+  <!-- Background Image -->
+  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+       class="absolute inset-0 w-full h-full object-cover brightness-75">
+
+  <!-- Overlay Text -->
+  <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">Welcome to Apartment Rental Portal</h1>
+    <p class="text-lg md:text-2xl mb-6">Find your perfect 1BHK, 2BHK, or 3BHK apartment easily!</p>
+    <a href="apartments.html"
+       class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-lg font-semibold">
+       View Apartments
+    </a>
+  </div>
+</section>
+
 </body>
 </html>
-
-    
