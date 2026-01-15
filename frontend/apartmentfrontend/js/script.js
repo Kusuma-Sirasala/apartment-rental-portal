@@ -1,9 +1,11 @@
-const API_URL = "http://127.0.0.1:5000/api";
+const API_URL = "https://apartment-rental-portal.onrender.com";
 
 async function loadApartments() {
   try {
+    console.log(API_URL)
     const res = await fetch(`${API_URL}/apartments`);
     const apartments = await res.json();
+    console.log(apartments)
 
     const container = document.getElementById("apartments");
     container.innerHTML = "";

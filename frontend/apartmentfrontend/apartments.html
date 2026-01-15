@@ -7,7 +7,6 @@
 
 <body class="bg-gray-100">
 
-<!-- HEADER -->
 <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
   <h1 class="text-xl font-bold">🏢 Apartment Rental Portal</h1>
   <nav>
@@ -17,44 +16,36 @@
   </nav>
 </header>
 
-<!-- TITLE -->
 <h2 class="text-3xl font-bold text-center my-6">Available Apartments</h2>
 
-<!-- APARTMENTS GRID -->
 <div id="apartments" class="grid grid-cols-1 md:grid-cols-3 gap-6 px-8"></div>
 
-<!-- MESSAGE -->
 <p id="msg" class="text-center text-green-600 font-semibold mt-6"></p>
 
 <script>
-const API_URL = "http://127.0.0.1:5000/api/apartments";
-
-fetch(API_URL)
+fetch("http://127.0.0.1:5000/api/apartments")
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById("apartments");
 
     data.forEach(ap => {
-      const card = document.createElement("div");
-      card.className = "bg-white rounded shadow p-4";
+      container.innerHTML += `
+        <div class="bg-white rounded shadow p-4">
+          <img src="${ap.image}" class="h-48 w-full object-cover rounded mb-3">
+          <h3 class="text-xl font-bold">${ap.name}</h3>
+          <p>${ap.bhk}</p>
+          <p class="text-green-700 font-semibold">₹${ap.rent} / month</p>
 
-      card.innerHTML = `
-        <img src="${ap.image}" class="h-48 w-full object-cover rounded mb-3">
-        <h3 class="text-xl font-bold">${ap.name}</h3>
-        <p class="text-gray-600">${ap.bhk}</p>
-        <p class="text-green-700 font-semibold">₹${ap.rent} / month</p>
-
-        <button onclick="bookApartment('${ap.name}')"
-          class="mt-3 bg-blue-600 text-white w-full py-2 rounded">
-          Book Now
-        </button>
+          <button onclick="book('${ap.name}')"
+            class="mt-3 bg-blue-600 text-white w-full py-2 rounded">
+            Book Now
+          </button>
+        </div>
       `;
-
-      container.appendChild(card);
     });
   });
 
-function bookApartment(name) {
+function book(name) {
   document.getElementById("msg").innerText =
     `✅ Booking successful for ${name}. Our team will contact you shortly.`;
 }

@@ -1,32 +1,33 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 CORS(app)
 
 @app.route("/")
 def home():
-    return "Backend Running"
+    return send_from_directory("static", "index.html")
 
+@app.route("/login")
+def login_page():
+    return send_from_directory("static", "login.html")
+
+@app.route("/register")
+def register_page():
+    return send_from_directory("static", "register.html")
+
+@app.route("/apartments")
+def apartments_page():
+    return send_from_directory("static", "apartments.html")
+
+# ---------- APIs ----------
 @app.route("/api/register", methods=["POST"])
 def register():
-    return jsonify({
-        "status": "success",
-        "message": "User registered successfully"
-    })
+    return jsonify({"status": "success", "message": "User registered successfully"})
 
 @app.route("/api/login", methods=["POST"])
 def login():
-    return jsonify({
-        "status": "success",
-        "message": "Login successful"
-    })
-@app.route("/api/book", methods=["POST"])
-def book_apartment():
-    return jsonify({
-        "status": "success",
-        "message": "Apartment booked successfully ! Our team will contact you soon."
-    })
+    return jsonify({"status": "success", "message": "Login successful"})
 @app.route("/api/apartments", methods=["GET"])
 def apartments():
     return jsonify([
